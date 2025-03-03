@@ -17,16 +17,21 @@ export class JobboardService {
   }
 
 
-  getJobDetails(query:string):Observable<any>{
-    // const params={
-    //   company:company,
-    //   job_Title:jobTitle,
-    //   location_type:'ANY',
-    //   years_of_experience:'ALL'
-    // };
+  getJobDetails(objectUrl:string,query:string):Observable<any>{
     const params={
       query:query
     }
-    return this.http.get(`${this.apiUrl}/search` ,{headers: this.headers,params})
+    let url=environment.apiUrl +objectUrl
+    return this.http.get(url,{headers: this.headers,params})
+  }
+
+  getsalaryDetails(company:string,jobtitle:string,locationType:string,years_of_experience:string):Observable<any>{
+    const params={
+      company:company,
+      job_title:jobtitle,
+      location_type:'ANY',
+      years_of_experience:'ALL'
+    }
+    return this.http.get(`${this.apiUrl}/company-job-salary`, {headers:this.headers, params})
   }
 }

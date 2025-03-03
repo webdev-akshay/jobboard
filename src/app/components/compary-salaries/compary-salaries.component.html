@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container" id="marginbetweennavigationbarandjumbotron">
+            <div class="row">
+                <div class="col-xs-12 p-3">
+                    <h2 class="text-center text-primary"
+                        style="margin:0px;padding:0px;font-family: 'Droid Sans', sans-serif;">Search Campany and Their
+                        Salaries</h2>
+                    <hr>
+                    <form [formGroup]="jobForm" (ngSubmit)="getCompanySalaryData()" class="form-group form-inline text-center">
+                        <div class="row m-0">
+                            <div class="col ps-2 pe-2 mb-3">
+                                <input type="text" class="w-100 form-control" formControlName="company" placeholder="Enter company name" required>
+                            </div>
+                            <div class="col ps-2 pe-2 mb-3">
+                                <input type="text" class="w-100 form-control" formControlName="job_title" placeholder="Enter Job Title" required>
+
+                            </div>
+                            <div class="col ps-2 pe-2 mb-3">
+                                <input type="text" class="w-100 form-control" formControlName="location_type" placeholder="Enter location type">
+
+                            </div>
+                            <div class="col ps-2 pe-2 mb-3">
+                                <input type="text" class="w-100 form-control" formControlName="years_of_experience" placeholder="e.g., 1-5, ALL"
+                                    required>
+                            </div>
+                            <div class="col ps-2 pe-2 mb-3">
+                                <button type="submit" class="btn-primary text-center form-control"
+                            style="width:300px;">Search</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container my-5">
+            <div class="row">
+                    <div *ngFor="let companySalaryDtl of jobData" class="card p-3 mb-5 bg-body w-100 col-md-4">
+                        <div class="card-body">
+                          <h5 class="card-title text-left mb-3">{{companySalaryDtl.job_title}}</h5>
+                          <p class="card-text"><strong>Location:</strong> {{companySalaryDtl.location}}</p>
+                          <p class="card-text"><strong>Salary Range:</strong>{{companySalaryDtl.min_salary}} - {{companySalaryDtl.max_salary}}</p>
+                          <p class="card-text"><strong>Median Salary:</strong>{{companySalaryDtl.median_salary}}</p>
+                          <p class="card-text"><strong>Base Salary Range:</strong> {{companySalaryDtl.min_base_salary}} - {{companySalaryDtl.max_base_salary}}</p>
+                          <p class="card-text"><strong>Additional Pay Range:</strong> {{companySalaryDtl.min_additional_pay}}- {{companySalaryDtl.max_additional_pay}}</p>
+                        </div>
+                      </div>
+            </div>
+          </div>

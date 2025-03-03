@@ -156,6 +156,11 @@ img {
   color: var(--active-color);
   flex-shrink: 0;
  }
+ select{
+  width: 100%;
+  border: 0;
+  height: 50px;
+ }
 }
 
 .search-button {

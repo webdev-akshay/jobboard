@@ -1,0 +1,5 @@
+1. Add Toater messgae
+2. Add Loader
+3. If Job not found  add messgae for e.g "Job Not Found"
+4. Add Dark and Light Mode
+5. Add Login Page

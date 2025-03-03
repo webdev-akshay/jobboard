@@ -10,23 +10,34 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './jobboard.component.html',
   styleUrl: './jobboard.component.scss'
 })
-export class JobboardComponent implements OnInit{
-  jobData:any[]=[];
-  filteredJobs:any[]=[];
-  searchedQuery:string=''
-  constructor(private jobService:JobboardService){}
-  getJob(){
-    this.jobService.getJobDetails(this.searchedQuery).subscribe((data)=>{
-      this.jobData=data.data
-      console.log(data);
-    })
+export class JobboardComponent implements OnInit {
+  jobData: any[] = [];
+  searchedQuery: string = ''
+  constructor(private jobService: JobboardService) { }
+  getJob() {
+    let url = '/search'
+    if (!this.searchedQuery) {
+      this.jobService.getJobDetails(url,'software developer').subscribe((data) => {
+        this.jobData = data.data
+      })
+    }
+    else {
+      this.jobService.getJobDetails(url,this.searchedQuery).subscribe((data) => {
+        this.jobData = data.data
+        console.log(data);
+      })
+    }
+
   }
-  filterJobs(jobType:string){
-    this.jobService.getJobDetails(jobType).subscribe((data)=>{
-      this.filteredJobs=data.data.fil  
-    })
+  getUniqueCities(): string[] {
+    return [...new Set(this.jobData.map(job => job.job_city))]
   }
+  getUniqueJobType(): string[] {
+    return [...new Set(this.jobData.map(job => job.job_employment_type))]
+  }
+
   ngOnInit(): void {
+    this.getJob()
   }
 
 }
